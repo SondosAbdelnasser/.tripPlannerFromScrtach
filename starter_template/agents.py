@@ -4,9 +4,7 @@ from langchain.llms import OpenAI, Ollama
 from langchain_openai import ChatOpenAI
 
 
-# This is an example of how to define custom agents.
-# You can define as many agents as you want.
-# You can also define custom tasks in tasks.py
+
 class CustomAgents:
     def __init__(self):
         self.OpenAIGPT35 = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
@@ -15,32 +13,38 @@ class CustomAgents:
 
     def expert_travel_agent(self):
         return Agent(
-            role="Define agent 1 role here",
-            backstory=dedent(f"""Define agent 1 backstory here"""),
-            goal=dedent(f"""Define agent 1 goal here"""),
+            role=" expert travel agent ",
+            backstory=dedent(f"""Expert in travel professional with in-depth knowledge of global destinations, 
+                             travel logistics, and customer service."""),
+            goal=dedent(f"""create a 7 day travel  with detailed per day ,
+                        contains budget, packing recommendation , tips """),
             # tools=[tool_1, tool_2],
             allow_delegation=False,
             verbose=True,
-            llm=self.OpenAIGPT35,
+            llm=self.OpenAIGPT4,
         )
 
     def city_expert(self):
         return Agent(
-            role="Define agent 2 role here",
-            backstory=dedent(f"""Define agent 2 backstory here"""),
-            goal=dedent(f"""Define agent 2 goal here"""),
+            role="City selection Expert ",
+            backstory=dedent(f"""expert at  decision-making function based on 
+                             travel data to
+                         choose a prefect  destination city for travel """),
+            goal=dedent(f""" city selected based on weater ,budget , season ,Events and festivals ,
+                        Accommodation availability, Safety  """),
             # tools=[tool_1, tool_2],
             allow_delegation=False,
             verbose=True,
-            llm=self.OpenAIGPT35,   
+            llm=self.OpenAIGPT4,   
         )
-    def local_tour_expert(self):
+    def local_tour_guide(self):
         return Agent(
-            role="Define agent 2 role here",
-            backstory=dedent(f"""Define agent 2 backstory here"""),
-            goal=dedent(f"""Define agent 2 goal here"""),
+            role="Local Tour Guide ",
+            backstory=dedent(f"""knowledgeble local guide with
+                              extensive inforamtion about the city , its attraction and customs """),
+            goal=dedent(f"""provide the best insights about the selected city """),
             # tools=[tool_1, tool_2],
             allow_delegation=False,
             verbose=True,
-            llm=self.OpenAIGPT35,
+            llm=self.OpenAIGPT4,
         )
