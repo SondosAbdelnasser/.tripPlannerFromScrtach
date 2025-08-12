@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "tripplanner"
+version = "0.1.0"
+description = "Trip Planner Project from Starter Template"
+authors = ["sondos"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+unstructured = "==0.10.24"
+crewai = "0.1.24"
+python-dotenv = "1.0.0"
+tools="^0.1.9"
+pyowm="3.3.0"
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
