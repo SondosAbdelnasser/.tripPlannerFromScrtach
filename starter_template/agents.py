@@ -2,10 +2,11 @@ from crewai import Agent
 from textwrap import dedent
 from langchain.llms import OpenAI, Ollama
 from langchain_openai import ChatOpenAI
+from tools.search_tools import SearchTools
+from tools.calculator_tools import CalculatorTools
 
 
-
-class CustomAgents:
+class TravelAgents:
     def __init__(self):
         self.OpenAIGPT35 = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
         self.OpenAIGPT4 = ChatOpenAI(model_name="gpt-4", temperature=0.7)
@@ -18,8 +19,10 @@ class CustomAgents:
                              travel logistics, and customer service."""),
             goal=dedent(f"""create a 7 day travel  with detailed per day ,
                         contains budget, packing recommendation , tips """),
-            # tools=[tool_1, tool_2],
-            allow_delegation=False,
+            tools=[SearchTools.search_internet,
+                   CalculatorTools.calculate
+            ],
+            
             verbose=True,
             llm=self.OpenAIGPT4,
         )
@@ -32,8 +35,8 @@ class CustomAgents:
                          choose a prefect  destination city for travel """),
             goal=dedent(f""" city selected based on weater ,budget , season ,Events and festivals ,
                         Accommodation availability, Safety  """),
-            # tools=[tool_1, tool_2],
-            allow_delegation=False,
+            tools=[SearchTools.search_internet],
+            
             verbose=True,
             llm=self.OpenAIGPT4,   
         )
@@ -43,8 +46,8 @@ class CustomAgents:
             backstory=dedent(f"""knowledgeble local guide with
                               extensive inforamtion about the city , its attraction and customs """),
             goal=dedent(f"""provide the best insights about the selected city """),
-            # tools=[tool_1, tool_2],
-            allow_delegation=False,
+            tools=[SearchTools.search_internet],
+            
             verbose=True,
             llm=self.OpenAIGPT4,
         )
